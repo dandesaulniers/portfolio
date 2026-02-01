@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dan Desaulniers | Junior Network Administrator</title>
+    <style>
+        /* --- GLOBAL VARIABLES & RESET --- */
+        :root {
+            --primary: #0f172a; /* Navy Blue */
+            --accent: #2563eb; /* Bright Blue */
+            --bg-light: #f8fafc;
+            --text-dark: #334155;
+            --text-light: #64748b;
+            --white: #ffffff;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--white);
+        }
+
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+
+        /* --- TYPOGRAPHY --- */
+        h1, h2, h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        h1 { font-size: 2.5rem; font-weight: 800; line-height: 1.2; }
+        h2 { font-size: 2rem; border-bottom: 2px solid var(--accent); display: inline-block; padding-bottom: 0.5rem; margin-bottom: 2rem; }
+        h3 { font-size: 1.25rem; font-weight: 600; }
+        p { margin-bottom: 1rem; }
+
+        /* --- NAVIGATION --- */
+        nav {
+            position: sticky;
+            top: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #e2e8f0;
+            z-index: 1000;
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo { font-weight: 700; font-size: 1.2rem; color: var(--primary); }
+        
+        .nav-links { display: flex; gap: 1.5rem; }
+        .nav-links a { font-size: 0.9rem; font-weight: 500; color: var(--text-dark); transition: color 0.3s; }
+        .nav-links a:hover { color: var(--accent); }
+
+        .btn-download {
+            background-color: var(--accent);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+        .btn-download:hover { background-color: #1d4ed8; color: white; }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            padding: 5rem 5%;
+            background-color: var(--primary);
+            color: white;
+            text-align: center;
+        }
+        .hero h1 { color: white; }
+        .hero p { font-size: 1.2rem; color: #cbd5e1; max-width: 800px; margin: 0 auto 2rem auto; }
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+        .stat-box { background: rgba(255,255,255,0.1); padding: 1rem; border-radius: 8px; }
+
+        /* --- SECTIONS GENERAL --- */
+        section { padding: 4rem 5%; }
+        .bg-gray { background-color: var(--bg-light); }
+
+        /* --- SKILLS GRID --- */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        .skill-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            border-left: 4px solid var(--accent);
+        }
+
+        /* --- EXPERIENCE & RESUME --- */
+        .job-entry { margin-bottom: 3rem; }
+        .job-header { display: flex; justify-content: space-between; flex-wrap: wrap; margin-bottom: 0.5rem; }
+        .job-title { font-weight: 700; color: var(--primary); font-size: 1.1rem; }
+        .job-company { font-weight: 600; color: var(--accent); }
+        .job-date { color: var(--text-light); font-style: italic; }
+        .job-list { padding-left: 1.2rem; }
+        .job-list li { margin-bottom: 0.5rem; list-style-type: disc; }
+
+        /* --- PROJECTS --- */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        .project-card {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 1.5rem;
+            transition: transform 0.2s;
+        }
+        .project-card:hover { transform: translateY(-5px); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); }
+        .project-header { color: var(--accent); font-weight: 700; margin-bottom: 0.5rem; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px; }
+        .project-detail strong { color: var(--primary); }
+
+        /* --- GOALS --- */
+        .goals-container { display: flex; gap: 3rem; flex-wrap: wrap; }
+        .goal-column { flex: 1; min-width: 300px; }
+
+        /* --- INDUSTRY RESEARCH --- */
+        .research-paper {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 3rem;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+        }
+        .research-paper h3 { margin-top: 2rem; }
+        .references { margin-top: 2rem; font-size: 0.9rem; color: var(--text-light); border-top: 1px solid #eee; padding-top: 1rem; }
+
+        /* --- CONTACT & FOOTER --- */
+        .contact-links { display: flex; justify-content: center; gap: 2rem; margin-top: 2rem; flex-wrap: wrap; }
+        .contact-btn {
+            padding: 1rem 2rem;
+            border: 2px solid var(--accent);
+            border-radius: 50px;
+            color: var(--accent);
+            font-weight: 700;
+            transition: all 0.3s;
+        }
+        .contact-btn:hover { background: var(--accent); color: white; }
+        
+        footer {
+            background: var(--primary);
+            color: var(--text-light);
+            text-align: center;
+            padding: 2rem;
+            font-size: 0.9rem;
+        }
+
+        /* --- MOBILE --- */
+        @media (max-width: 768px) {
+            .nav-links { display: none; } /* Simplified for this exercise */
+            h1 { font-size: 2rem; }
+            .hero { padding: 3rem 1rem; }
+            .research-paper { padding: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">Dan Desaulniers</div>
+        <div class="nav-links">
+            <a href="#about">About</a>
+            <a href="#skills">Skills</a>
+            <a href="#experience">Experience</a>
+            <a href="#projects">Projects</a>
+            <a href="#goals">Goals</a>
+            <a href="#research">Industry</a>
+        </div>
+        <a href="Dan-Desaulniers-Resume.pdf" class="btn-download" download>Download Resume (PDF)</a>
+    </nav>
+
+    <header class="hero">
+        <h1>Building secure, reliable IT systems through hands-on experience</h1>
+        <p>Junior Network Administrator | IT Support Specialist | Cybersecurity Student</p>
+        
+        <p style="font-size: 1rem; opacity: 0.9; line-height: 1.8;">
+            I am a Network Administration student at NBCC with over 30 years of practical technology experience. 
+            Through my business, Hands Down Designs, I provide IT support, network configuration, and cybersecurity-focused services 
+            to small businesses, nonprofit organizations, and residential clients.
+        </p>
+
+        <div class="hero-stats">
+            <div class="stat-box">20+ Recurring Clients</div>
+            <div class="stat-box">30+ Years Experience</div>
+            <div class="stat-box">Network & Security Focus</div>
+        </div>
+    </header>
+
+    <section id="about">
+        <h2>About Me</h2>
+        <p>I am currently a Network Administration student at New Brunswick Community College, bringing over three decades of practical technology experience to my formal transition toward IT infrastructure, networking, and cybersecurity.</p>
+        
+        <p>As the founder of Hands Down Designs, I provide hands-on IT support, network configuration, and malware remediation services for small businesses, nonprofit organizations, and residential clients, supporting over twenty recurring clients and numerous one-time projects. Through this work, I regularly troubleshoot hardware and software issues, configure segmented networks, implement backup solutions, and collaborate with vendors to maintain reliable and secure systems. I approach technical challenges methodically and prioritize clear communication to ensure users understand both the problem and the solution.</p>
+
+        <p>My interest in network administration developed naturally as I supported increasingly complex environments, including full network rebuilds, firewall configurations, and wireless infrastructure upgrades. In parallel, assisting clients affected by cyber incidents (including malware infections, compromised accounts, and system recoveries) highlighted the importance of proactive security measures, system hardening, and user education.</p>
+
+        <p>I am actively developing my technical expertise through my studies at NBCC and industry certifications, including CompTIA IT Fundamentals (ITF+) and CompTIA A+ (Core 1). I believe that strong technical fundamentals, continuous learning, and real-world problem-solving are essential to becoming an effective and adaptable IT professional.</p>
+    </section>
+
+    <section id="skills" class="bg-gray">
+        <h2>Key Skills</h2>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <h3>IT Support</h3>
+                <p>Troubleshooting, Hardware & Software Deployment, System Recovery, Documentation & User Training.</p>
+            </div>
+            <div class="skill-card">
+                <h3>Networking</h3>
+                <p>Network Configuration, Wi-Fi Optimization, VLANs & Segmentation, Cabling Upgrades.</p>
+            </div>
+            <div class="skill-card">
+                <h3>Security</h3>
+                <p>Firewall Setup, System Hardening, Malware Remediation, Backup Solutions (Local & Cloud).</p>
+            </div>
+            <div class="skill-card">
+                <h3>Soft Skills</h3>
+                <p>Clear Communication, Adaptability, Problem-Solving, Teamwork.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience">
+        <h2>Professional Experience</h2>
+
+        <div class="job-entry">
+            <div class="job-header">
+                <span class="job-title">IT Support / Junior Network Administrator (Owner)</span>
+                <span class="job-company">Hands Down Designs – St. Andrews, NB</span>
+            </div>
+            <span class="job-date">2020 – Present</span>
+            <ul class="job-list">
+                <li>Provide IT support to over 20 recurring clients plus numerous one-time projects.</li>
+                <li>Troubleshoot Windows systems, hardware failures, and network connectivity issues.</li>
+                <li>Configure routers, firewalls, switches, and mesh Wi-Fi systems.</li>
+                <li>Build segmented networks for secure guest and IoT environments.</li>
+                <li>Perform malware cleanup, system recovery, and security-focused troubleshooting.</li>
+                <li>Implement and monitor local and cloud backup solutions.</li>
+            </ul>
+        </div>
+
+        <div class="job-entry">
+            <div class="job-header">
+                <span class="job-title">IT Support (Contract)</span>
+                <span class="job-company">St. Stephen’s University – St. Stephen, NB</span>
+            </div>
+            <span class="job-date">2021 – 2023</span>
+            <ul class="job-list">
+                <li>Supported staff with desktop troubleshooting and hardware upgrades.</li>
+                <li>Rebuilt network infrastructure including VLAN-based segmented Wi-Fi.</li>
+                <li>Upgraded cabling from Cat5 to Cat6 and reorganized network closets.</li>
+                <li>Developed IT documentation for staff and students.</li>
+            </ul>
+        </div>
+
+        <div class="job-entry">
+            <div class="job-header">
+                <span class="job-title">IT Support / Network Administration</span>
+                <span class="job-company">Sunbury Shores Arts & Nature Centre</span>
+            </div>
+            <span class="job-date">2020 – Present</span>
+            <ul class="job-list">
+                <li>Migrated organization from DSL to fiber connectivity using point-to-point networking.</li>
+                <li>Provide ongoing network maintenance and end-user support.</li>
+            </ul>
+        </div>
+
+        <div class="job-entry">
+            <div class="job-header">
+                <span class="job-title">IT Support (Retail Environment)</span>
+                <span class="job-company">Saint Andrews Home Hardware</span>
+            </div>
+            <span class="job-date">2022 – Present</span>
+            <ul class="job-list">
+                <li>Provide branch-level IT support, troubleshooting application and network issues.</li>
+                <li>Coordinate with central office IT teams.</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="education" class="bg-gray">
+        <h2>Education & Credentials</h2>
+        <div style="margin-bottom: 2rem;">
+            <h3>Network Administration Diploma (In Progress)</h3>
+            <p>New Brunswick Community College (NBCC) | Expected 2027</p>
+        </div>
+        <div>
+            <h3>Certifications</h3>
+            <ul>
+                <li><strong>CompTIA A+ Core 1</strong> – January 2026</li>
+                <li><strong>CompTIA IT Fundamentals (ITF+)</strong> – May 2025</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="projects">
+        <h2>Projects & Assignments</h2>
+        <p style="margin-bottom: 2rem;">A selection of academic and real-world technical projects.</p>
+        
+        <div class="project-grid">
+            <div class="project-card">
+                <div class="project-header">Academic Project (NBCC)</div>
+                <h3>Network Configuration & Troubleshooting Labs</h3>
+                <p class="project-detail"><strong>Challenge:</strong> Designing and configuring functional networks while learning switching, VLANs, and routing.</p>
+                <p class="project-detail"><strong>What I Did:</strong> Configured VLANs across multiple switches, implemented inter-switch connectivity, and diagnosed issues using CLI.</p>
+                <p class="project-detail"><strong>Result:</strong> Developed strong foundational skills in network design and systematic troubleshooting.</p>
+            </div>
+
+             <div class="project-card">
+                <div class="project-header">Academic Project (NBCC)</div>
+                <h3>Windows Systems Administration Labs</h3>
+                <p class="project-detail"><strong>Challenge:</strong> Learning enterprise-style system deployment and management.</p>
+                <p class="project-detail"><strong>What I Did:</strong> Installed and configured Windows OS in VMs, managed users/permissions, and used PowerShell for automation.</p>
+                <p class="project-detail"><strong>Result:</strong> Gained practical experience with Windows administration workflows.</p>
+            </div>
+
+            <div class="project-card">
+                <div class="project-header">Real-World Project</div>
+                <h3>St. Stephen’s University – Network Rebuild</h3>
+                <p class="project-detail"><strong>Challenge:</strong> Outdated cabling, cluttered infrastructure, and unreliable wireless service.</p>
+                <p class="project-detail"><strong>What I Did:</strong> Replaced Cat5 with Cat6 cabling, reorganized network closets, and configured segmented Wi-Fi.</p>
+                <p class="project-detail"><strong>Result:</strong> Improved network reliability, performance, and maintainability.</p>
+            </div>
+
+            <div class="project-card">
+                <div class="project-header">Real-World Project</div>
+                <h3>Internet Migration (DSL to Point-to-Point)</h3>
+                <p class="project-detail"><strong>Challenge:</strong> Slow and unreliable connectivity for a local organization.</p>
+                <p class="project-detail"><strong>What I Did:</strong> Planned and implemented point-to-point internet service and deployed mesh Wi-Fi coverage.</p>
+                <p class="project-detail"><strong>Result:</strong> Significantly faster, more stable internet access.</p>
+            </div>
+
+             <div class="project-card">
+                <div class="project-header">Real-World Project</div>
+                <h3>Cyber Incident Support</h3>
+                <p class="project-detail"><strong>Challenge:</strong> Systems compromised by malware and security incidents.</p>
+                <p class="project-detail"><strong>What I Did:</strong> Removed malware, recovered data from backups, hardened systems, and educated users.</p>
+                <p class="project-detail"><strong>Result:</strong> Restored secure systems and reduced repeat security incidents.</p>
+            </div>
+
+             <div class="project-card">
+                <div class="project-header">Simulation</div>
+                <h3>VLAN & Network Security Labs</h3>
+                <p class="project-detail"><strong>Challenge:</strong> Understanding network segmentation and traffic control.</p>
+                <p class="project-detail"><strong>What I Did:</strong> Designed VLAN structures, configured switch ports, and created diagrams to document traffic flow.</p>
+                <p class="project-detail"><strong>Result:</strong> Practical understanding of how VLANs improve security and performance.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="goals" class="bg-gray">
+        <h2>Career Goals & Aspirations</h2>
+        <div class="goals-container">
+            <div class="goal-column">
+                <h3>Short-Term Objectives (1–3 Years)</h3>
+                <p>My immediate focus is to secure a Junior Network Administrator role while completing my diploma. I aim to bridge the gap between academic theory and real-world application by deepening my knowledge in:</p>
+                <ul>
+                    <li><strong>Network Infrastructure:</strong> Configuration, troubleshooting, and segmentation.</li>
+                    <li><strong>Systems Administration:</strong> Windows Server and endpoint management.</li>
+                    <li><strong>Operational Security:</strong> Applying best practices to daily operations.</li>
+                </ul>
+            </div>
+            <div class="goal-column">
+                <h3>Long-Term Vision (5–10 Years)</h3>
+                <p>My long-term objective is to transition into a specialized <strong>Cybersecurity</strong> role. Building upon a solid foundation in IT operations, I plan to pursue certifications like Network+ and Security+ and specialize in:</p>
+                <ul>
+                    <li><strong>Network Defense:</strong> Traffic monitoring and intrusion detection.</li>
+                    <li><strong>Incident Response:</strong> Threat mitigation and forensics.</li>
+                    <li><strong>Infrastructure Hardening:</strong> Risk management.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="research">
+        <h2>Industry Research</h2>
+        <div class="research-paper">
+            <h3 style="margin-top:0;">IT Employment Trends in Canada and Atlantic Canada</h3>
+            
+            <p><strong>Overview</strong><br>
+            Canada’s Information Technology (IT) sector continues to expand as organizations modernize infrastructure, adopt cloud technologies, and respond to growing cybersecurity threats. Across industries, strong demand remains for professionals with foundational IT skills, particularly in network administration, technical support, and infrastructure management.</p>
+
+            <h3>National Employment Trends</h3>
+            <p>One of the most significant shifts in the Canadian IT landscape is the increasing reliance on Managed Service Providers (MSPs). Small and medium-sized businesses frequently outsource IT operations, including network management, security monitoring, and technical support. This trend has created steady demand for versatile IT professionals capable of troubleshooting systems, maintaining networks, and supporting end users.</p>
+            <p>At the same time, organizations are rapidly migrating from traditional on-premise infrastructure to cloud-based and hybrid environments. Platforms such as Microsoft Azure and Amazon Web Services (AWS) are now central to business operations. As a result, employers increasingly seek candidates with strong networking fundamentals, endpoint management experience, and familiarity with cloud-integrated systems.</p>
+            <p>Cybersecurity has emerged as one of the fastest-growing sectors within IT. Rising incidents of ransomware, phishing attacks, and data breaches have significantly increased the need for security-aware IT professionals.</p>
+
+            <h3>Atlantic Canada and New Brunswick Outlook</h3>
+            <p>Within Atlantic Canada, Nova Scotia — particularly Halifax — remains the largest technology hub. However, New Brunswick represents a growing and increasingly competitive technology market. The province has attracted national and global companies seeking lower operating costs while maintaining access to skilled professionals. Fredericton has gained recognition as a major cybersecurity center in Canada, supported by research institutions and cybersecurity-focused employers.</p>
+            <p>For IT professionals in New Brunswick, opportunities are particularly strong in private-sector IT support, managed services, infrastructure roles, and cybersecurity-adjacent positions.</p>
+
+            <h3>Employer Skill Priorities</h3>
+            <p>Across Canada, employers consistently emphasize the importance of:</p>
+            <ul>
+                <li>Strong troubleshooting and technical support skills</li>
+                <li>Networking fundamentals and infrastructure management</li>
+                <li>Cloud-connected system environments</li>
+                <li>Security awareness and best practices</li>
+                <li>Clear communication with technical and non-technical users</li>
+            </ul>
+
+            <div class="references">
+                <strong>References:</strong><br>
+                CompTIA. (2024). CompTIA A+ Certification Exam Objectives.<br>
+                Government of Canada. (2025). Job Bank – Computer Network Technicians and IT Support Occupations.<br>
+                Information and Communications Technology Council (ICTC). (2025). Atlantic Canada’s Digital Economy.<br>
+                LinkedIn Economic Graph. (2025). The State of the Canadian IT Labour Market.
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <h2>Let's Connect</h2>
+        <div class="contact-links">
+            <a href="https://www.linkedin.com/in/dan-desaulniers/" target="_blank" class="contact-btn">LinkedIn Profile</a>
+            <a href="https://handsdowndesigns.ca/" target="_blank" class="contact-btn">Hands Down Designs</a>
+            <a href="mailto:your-email@example.com" class="contact-btn">Email Me</a>
+        </div>
+
+        <p style="margin-top: 2rem; opacity: 0.8;">Professional References Available Upon Request.</p>
+        
+        <p style="margin-top: 3rem; font-size: 0.8rem; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1rem;">
+            &copy; 2026 Dan Desaulniers. All Rights Reserved.
+        </p>
+    </footer>
+
+</body>
+</html>
